@@ -40,13 +40,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * | Meh/Esc|   1  |   2  |   3  |   4  |   5  | TGL1 |           |Delete|   6  |   7  |   8  |   9  |   0  |    -   |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Tab    |   Q  |   W  |   E  |   R  |   T  | Caps |           | Ins  |   Y  |   U  |   I  |   O  |   P  |    @   |
+ * | Tab    |   Q  |   W  |   E  |   R  |   T  | LANG |           | Ins  |   Y  |   U  |   I  |   O  |   P  |    @   |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | TDLANG |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |    :   |
+ * | Caps   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |    :   |
  * |--------+------+------+------+------+------|  [   |           |  ]   |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | S- / \ |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |LCtrl | Gui  | Alt  | ONE1 | MO2  |                                       | Left | Down | Up   | Right| MO1  |
+ *   |LCtrl | Gui  | Alt  | ONE1 | MO2  |                                       | F5   | F6   | F7   | F8   | MO1  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | F2   | F3   |       | F4   | App  |
@@ -61,8 +61,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
         MEH_T(KC_ESC),  KC_1,         KC_2,   KC_3,     KC_4,   KC_5,   TG(SYMB),
-        KC_TAB,         KC_Q,         KC_W,   KC_E,     KC_R,   KC_T,   KC_CAPS,
-        TD(TD_LANG),    KC_A,         KC_S,   KC_D,     KC_F,   KC_G,
+        KC_TAB,         KC_Q,         KC_W,   KC_E,     KC_R,   KC_T,   TD(TD_LANG),
+        KC_CAPS,        KC_A,         KC_S,   KC_D,     KC_F,   KC_G,
         KC_LSFT,        KC_Z,         KC_X,   KC_C,     KC_V,   KC_B,   JP_LBRC,
         KC_LCTRL,       KC_LGUI,      KC_LALT,OSL(SYMB),MO(MDIA),
                                               KC_F2,  KC_F3,
@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              KC_INS,      KC_Y,   KC_U,    KC_I,   KC_O,   KC_P,           JP_AT,
                           KC_H,   KC_J,    KC_K,   KC_L,   JP_SCLN,        JP_COLN,
              JP_RBRC,     KC_N,   KC_M,    JP_COMM,JP_DOT, KC_SLSH,        SFT_T(JP_BSLS),
-                                  KC_LEFT, KC_DOWN,KC_UP,  KC_RGHT,        MO(SYMB),
+                                  KC_F5,   KC_F6,  KC_F7,  KC_F8,        MO(SYMB),
              KC_F4,        KC_APP,
              KC_PGUP,
              KC_PGDN,KC_DEL, KC_ENT
