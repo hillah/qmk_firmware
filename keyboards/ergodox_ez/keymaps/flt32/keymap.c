@@ -88,9 +88,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |         |  F11 |  F12 |  F13 |  F14 | F15  |------|           |------| Bspc |   4  |   5  |   6  | Up   |        |
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |         |  F16 |  F17 |  F18 |  F19 | F20  |      |           |      | Left |   1  |   2  |   3  | Down |        |
+ * |         |  F16 |  F17 |  F18 |  F19 | F20  |      |           |      | Left |   1  |   2  |   3  |  ,   |        |
  * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |       |      |      |      |      |                                       |   0  |   ,  |   .  | Right|       |
+ *   |       |      |      |      |      |                                       |   0  | Down |   .  | Right|       |
  *   `-----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -115,8 +115,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, JP_CIRC,   JP_QUOT,KC_PSLS, KC_PAST,  JP_MINS, KC_TRNS,
        KC_TRNS, JP_YEN,    KC_P7,  KC_P8,   KC_P9,    KC_PPLS, KC_TRNS,
                 KC_BSPC,   KC_P4,  KC_P5,   KC_P6,    KC_UP, KC_TRNS,
-       KC_TRNS, KC_LEFT,   KC_P1,  KC_P2,   KC_P3,    KC_DOWN, KC_TRNS,
-                           KC_P0,  KC_PCMM, KC_PDOT,  KC_RGHT, KC_TRNS,
+       KC_TRNS, KC_LEFT,   KC_P1,  KC_P2,   KC_P3,    JP_COMM, KC_TRNS,
+                           KC_P0,  KC_DOWN, KC_PDOT,  KC_RGHT, KC_TRNS,
        KC_TRNS, KC_TRNS,
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS
