@@ -6,8 +6,9 @@
 #include "led.h"
 
 #define BASE 0 // default layer
-#define SYMB 1 // symbols
+#define KFNC 1 // functions layer
 #define MDIA 2 // media keys
+#define SYMB 3 // symbols
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
@@ -38,11 +39,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | Meh/Esc|   1  |   2  |   3  |   4  |   5  | TGL1 |           |Delete|   6  |   7  |   8  |   9  |   0  |    -   |
+ * | Meh/Esc|   1  |   2  |   3  |   4  |   5  | TGL2 |           |Delete|   6  |   7  |   8  |   9  |   0  |    -   |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * | Tab    |   Q  |   W  |   E  |   R  |   T  | LANG |           | Ins  |   Y  |   U  |   I  |   O  |   P  |    @   |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | Caps   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |    :   |
+ * | TGL1   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |    :   |
  * |--------+------+------+------+------+------|  [   |           |  ]   |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | S- / \ |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -51,42 +52,104 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        ,-------------.       ,-------------.
  *                                        | F2   | F3   |       | F4   | F5   |
  *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      | F6   |       | F8   |      |      |
- *                                 | Space|MO1   |------|       |------|Back  |Enter |
- *                                 |      |      | F7   |       | F9   |space |      |
+ *                                 |      |      | F6   |       | F7   |      |      |
+ *                                 | Space|MO3   |------|       |------|Back  |Enter |
+ *                                 |      |      | Caps |       |Space |space |      |
  *                                 `--------------------'       `--------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
-        MEH_T(KC_ESC),  KC_1,         KC_2,   KC_3,     KC_4,   KC_5,   TG(SYMB),
+        MEH_T(KC_ESC),  KC_1,         KC_2,   KC_3,     KC_4,   KC_5,   TG(MDIA),
         KC_TAB,         KC_Q,         KC_W,   KC_E,     KC_R,   KC_T,   TD(TD_LANG),
-        KC_CAPS,        KC_A,         KC_S,   KC_D,     KC_F,   KC_G,
+        TG(KFNC),       KC_A,         KC_S,   KC_D,     KC_F,   KC_G,
         KC_LSFT,        KC_Z,         KC_X,   KC_C,     KC_V,   KC_B,   JP_LBRC,
         KC_LCTRL,       KC_LGUI,      KC_APP, KC_LALT,  MO(MDIA),
                                               KC_F2,  KC_F3,
                                                                KC_F6,
-                                               KC_SPC,MO(SYMB),KC_F7,
+                                               KC_SPC,MO(SYMB),LSFT(KC_CAPS),
         // right hand
              KC_DEL,      KC_6,   KC_7,    KC_8,   KC_9,   KC_0,           JP_MINS,
              KC_INS,      KC_Y,   KC_U,    KC_I,   KC_O,   KC_P,           JP_AT,
                           KC_H,   KC_J,    KC_K,   KC_L,   JP_SCLN,        JP_COLN,
              JP_RBRC,     KC_N,   KC_M,    JP_COMM,JP_DOT, KC_SLSH,        SFT_T(JP_BSLS),
                                   KC_LEFT, KC_DOWN, KC_UP, KC_RGHT,        KC_LCTRL,
-             KC_F4,        KC_F5,
-             KC_F8,
-             KC_F9,KC_BSPC, KC_ENT
+             KC_F4,          KC_F5,
+             KC_F7,
+             KC_SPC,KC_BSPC, KC_ENT
     ),
 
-/* Keymap 1: Symbol Layer
+// function-layer
+[KFNC] = LAYOUT_ergodox(
+       // left hand
+       KC_TRNS,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                                           KC_TRNS, KC_TRNS,
+                                                    KC_TRNS,
+                                  KC_TRNS, KC_TRNS, KC_TRNS,
+       // right hand
+       KC_TRNS, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS,
+       KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS
+),
+/* Keymap 2: Media and mouse keys
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |      |      |      |      |      |      |           |      | Home |PgUp  | PSCR |Break | PLAY1| REC1   |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      | End  |PgDown|      |      | PLAY2| REC2   |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |------|           |------| Left | Down | Up   | Right|      | RECSTOP|
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      |      |      | Prev | Next |      |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+// MEDIA AND MOUSE
+[MDIA] = LAYOUT_ergodox(
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                                           KC_TRNS, KC_TRNS,
+                                                    KC_TRNS,
+                                  KC_TRNS, KC_TRNS, KC_TRNS,
+    // right hand
+       KC_TRNS,  KC_HOME, KC_PGUP, KC_PSCR, KC_BRK,  DYN_MACRO_PLAY1, DYN_REC_START1,
+       KC_TRNS,  KC_END,  KC_PGDN, XXXXXXX, XXXXXXX, DYN_MACRO_PLAY2, DYN_REC_START2,
+                 KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,         DYN_REC_STOP,
+       KC_TRNS,  XXXXXXX, XXXXXXX, KC_MPRV, KC_MNXT, XXXXXXX,         KC_TRNS,
+                          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         KC_TRNS,
+       KC_TRNS, KC_TRNS,
+       KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS
+),
+/* Keymap 3: Symbol Layer
  *
  * ,---------------------------------------------------.           ,--------------------------------------------------.
- * |         |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |   ^  |   '  |   /  |   *  |   -  |        |
+ * |         |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |   ^  |   '  |   /  |   *  |   -  | NumLock|
  * |---------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
  * |         |  F6  |  F7  |  F8  |  F9  | F10  |      |           |      | Yen  |   7  |   8  |   9  |   +  |        |
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |         |  F11 |  F12 |  F13 |  F14 | F15  |------|           |------| Bspc |   4  |   5  |   6  | Up   |        |
+ * |         |  F11 |  F12 |  F13 |  F14 | F15  |------|           |------| Bspc |   4  |   5  |   6  |  Up  |        |
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |         |  F16 |  F17 |  F18 |  F19 | F20  |      |           |      | Left |   1  |   2  |   3  |  ,   |        |
  * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -112,53 +175,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                KC_TRNS,
                                KC_TRNS,KC_TRNS,KC_TRNS,
        // right hand
-       KC_TRNS, JP_CIRC,   JP_QUOT,KC_PSLS, KC_PAST,  JP_MINS, KC_TRNS,
-       KC_TRNS, JP_YEN,    KC_P7,  KC_P8,   KC_P9,    KC_PPLS, KC_TRNS,
-                KC_BSPC,   KC_P4,  KC_P5,   KC_P6,    KC_UP, KC_TRNS,
+       KC_TRNS, JP_CIRC,   JP_QUOT,KC_PSLS, KC_PAST,  KC_PMNS, KC_NLCK,
+       KC_TRNS, JP_YEN,    KC_P7,  KC_P8,   KC_P9,    KC_PPLS, XXXXXXX,
+                KC_BSPC,   KC_P4,  KC_P5,   KC_P6,    KC_UP,   XXXXXXX,
        KC_TRNS, KC_LEFT,   KC_P1,  KC_P2,   KC_P3,    JP_COMM, KC_TRNS,
                            KC_P0,  KC_DOWN, KC_PDOT,  KC_RGHT, KC_TRNS,
        KC_TRNS, KC_TRNS,
-       KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS
-),
-/* Keymap 2: Media and mouse keys
- *
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |        |      |      |      |      |      |      |           |      |      | NumL | PSCR |Break | PLAY1| REC1   |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      |      | MsUp |      |      |      |           |      | Home |PgDown| PgUp | End  | PLAY2| REC2   |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |MsLeft|MsDown|MsRght|      |------|           |------| Left | Down | Up   | Right|      | RECSTOP|
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      | Del  |Lclk  | Rclk |      |      |           |      |      |      | Prev | Next |      |        |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       |      |      |      |      |      |
- *   `----------------------------------'                                       `----------------------------------'
- *                                        ,-------------.       ,-------------.
- *                                        |      |      |       |      |BBack |
- *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      |      |       |      |      |      |
- *                                 |      |      |------|       |------|      |      |
- *                                 |      |      |      |       |      |      |      |
- *                                 `--------------------'       `--------------------'
- */
-// MEDIA AND MOUSE
-[MDIA] = LAYOUT_ergodox(
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_DEL,  KC_BTN1, KC_BTN2, KC_TRNS, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                                           KC_TRNS, KC_TRNS,
-                                                    KC_TRNS,
-                                  KC_TRNS, KC_TRNS, KC_TRNS,
-    // right hand
-       KC_TRNS,  KC_TRNS, KC_NLCK, KC_PSCR, KC_BRK,  DYN_MACRO_PLAY1, DYN_REC_START1,
-       KC_TRNS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  DYN_MACRO_PLAY2, DYN_REC_START2,
-                 KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS,         DYN_REC_STOP,
-       KC_TRNS,  KC_TRNS, KC_TRNS, KC_MPRV, KC_MNXT, KC_TRNS,         KC_TRNS,
-                          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,         KC_TRNS,
-       KC_TRNS, KC_WBAK,
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS
 ),
@@ -278,6 +300,16 @@ uint32_t layer_state_set_user(uint32_t state) {
         break;
       case 2:
         ergodox_right_led_2_on();
+        #ifdef RGBLIGHT_COLOR_LAYER_2
+          rgblight_setrgb(RGBLIGHT_COLOR_LAYER_2);
+        #endif
+        break;
+      case 3:
+        ergodox_right_led_1_on();
+        ergodox_right_led_2_on();
+        #ifdef RGBLIGHT_COLOR_LAYER_1
+          rgblight_setrgb(RGBLIGHT_COLOR_LAYER_1);
+        #endif
         #ifdef RGBLIGHT_COLOR_LAYER_2
           rgblight_setrgb(RGBLIGHT_COLOR_LAYER_2);
         #endif
