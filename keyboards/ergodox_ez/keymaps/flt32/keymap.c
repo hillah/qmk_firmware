@@ -39,11 +39,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | Meh/Esc|   1  |   2  |   3  |   4  |   5  | TGL2 |           |Delete|   6  |   7  |   8  |   9  |   0  |    -   |
+ * | Meh/Esc|   1  |   2  |   3  |   4  |   5  | TGL1 |           |Delete|   6  |   7  |   8  |   9  |   0  |    -   |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * | Tab    |   Q  |   W  |   E  |   R  |   T  | LANG |           | Ins  |   Y  |   U  |   I  |   O  |   P  |    @   |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | TGL1   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |    :   |
+ * | Caps   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |    :   |
  * |--------+------+------+------+------+------|  [   |           |  ]   |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | S- / \ |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -54,21 +54,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      | MHEN |       | KANA |      |      |
  *                                 | Space|MO3   |------|       |------|Back  |Enter |
- *                                 |      |      | Caps |       |Space |space |      |
+ *                                 |      |      | App  |       |Space |space |      |
  *                                 `--------------------'       `--------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
-        MEH_T(KC_ESC),  KC_1,         KC_2,   KC_3,     KC_4,   KC_5,   TG(MDIA),
+        MEH_T(KC_ESC),  KC_1,         KC_2,   KC_3,     KC_4,   KC_5,   TG(KFNC),
         KC_TAB,         KC_Q,         KC_W,   KC_E,     KC_R,   KC_T,   TD(TD_LANG),
-        TG(KFNC),       KC_A,         KC_S,   KC_D,     KC_F,   KC_G,
+        KC_CAPS,        KC_A,         KC_S,   KC_D,     KC_F,   KC_G,
         KC_LSFT,        KC_Z,         KC_X,   KC_C,     KC_V,   KC_B,   JP_LBRC,
         KC_LCTRL,       KC_LGUI,      KC_APP, KC_LALT,  MO(MDIA),
                                               KC_F6,  KC_F7,
                                                                KC_MHEN,
-                                               KC_SPC,MO(SYMB),LSFT(KC_CAPS),
+                                              KC_SPC, MO(SYMB),KC_APP,
         // right hand
              KC_DEL,      KC_6,   KC_7,    KC_8,   KC_9,   KC_0,           JP_MINS,
              KC_INS,      KC_Y,   KC_U,    KC_I,   KC_O,   KC_P,           JP_AT,
@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // function-layer
 [KFNC] = LAYOUT_ergodox(
        // left hand
-       KC_TRNS,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5, KC_TRNS,
+       KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
